@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .button {
+        @apply bg-primary px-4 py-2 rounded-lg text-white shadow-lg hover:bg-primaryLight
+    }
+}

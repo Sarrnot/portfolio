@@ -1,0 +1,13 @@
+/node_modules
+**/node_modules
+
+/.next
+**/.next
+
+.env
+
+docker-compose.yml
+
+npm-debug.log*
+
+.vscode
