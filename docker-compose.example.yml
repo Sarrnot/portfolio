@@ -11,3 +11,28 @@ services:
         environment:
             ENV_MODE: ${ENV_MODE}
         restart: always
+
+    database:
+        image: mariadb
+        container_name: database
+        ports:
+            - "${MARIADB_PORT}:3306"
+        environment:
+            MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+            MARIADB_USER: ${MARIADB_USER}
+            MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+            MARIADB_DATABASE: ${MARIADB_DATABASE}
+        volumes:
+            - "database-data:/var/lib/mysql"
+        restart: always
+
+    adminer:
+        image: adminer
+        ports:
+            - "81:8080"
+        depends_on:
+            - database
+        restart: always
+
+volumes:
+    database-data:
