@@ -3,6 +3,8 @@
 
 /.next
 **/.next
+/build
+**/build
 
 .env
 

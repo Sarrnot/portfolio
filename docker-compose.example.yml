@@ -12,6 +12,19 @@ services:
             ENV_MODE: ${ENV_MODE}
         restart: always
 
+    monitoring:
+        container_name: monitoring
+        build:
+            dockerfile: ./monitoring/docker/Dockerfile
+        volumes:
+            - ./monitoring:/code/monitoring
+            - ./libs:/code/libs
+        environment:
+            ENV_MODE: ${ENV_MODE}
+        depends_on:
+            - database
+        restart: always
+
     database:
         image: mariadb
         container_name: database
