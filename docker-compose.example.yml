@@ -6,10 +6,13 @@ services:
             dockerfile: ./docker/Dockerfile
         volumes:
             - ./web:/code/web
+            - ./shared:/code/shared
         ports:
             - "${WEB_PORT}:3000"
         environment:
             ENV_MODE: ${ENV_MODE}
+        depends_on:
+            - database
         restart: always
 
     monitoring:
@@ -18,12 +21,19 @@ services:
             dockerfile: ./monitoring/docker/Dockerfile
         volumes:
             - ./monitoring:/code/monitoring
-            - ./libs:/code/libs
+            - ./shared:/code/shared
         environment:
             ENV_MODE: ${ENV_MODE}
         depends_on:
             - database
         restart: always
+
+    shared:
+        container_name: shared
+        build:
+            dockerfile: ./shared/docker/Dockerfile
+        volumes:
+          - ./shared:/code/shared
 
     database:
         image: mariadb
@@ -45,7 +55,6 @@ services:
             - "81:8080"
         depends_on:
             - database
-        restart: always
 
 volumes:
     database-data:

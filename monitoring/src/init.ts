@@ -1,6 +1,6 @@
 import GeneratorManager from "./Generator/GeneratorManager";
 
-import MonitoringDatabase from "./Database/MonitoringDatabase";
+import MonitoringDatabase from "@local/shared/Database/MonitoringDatabase";
 import SequelizeProvider from "./Provider/SequelizeProvider";
 
 const init = async () => {

@@ -15,7 +15,7 @@ const definition: InferSchema<LogServerStatus> = {
         autoIncrement: true,
         primaryKey: true,
     },
-    server_id: {
+    serverId: {
         type: DataTypes.INTEGER.UNSIGNED,
         references: {
             model: Server,
@@ -41,7 +41,7 @@ class LogServerStatus extends Model<
     InferCreationAttributes<LogServerStatus>
 > {
     declare id: CreationOptional<number>;
-    declare server_id: number;
+    declare serverId: number;
     declare status: Status;
     declare traffic: number | null;
     declare latency: number | null;

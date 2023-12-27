@@ -1,6 +1,6 @@
 import { CreationAttributes } from "sequelize";
-import LogServerStatus from "../Entity/LogServerStatus";
-import Status from "../Type/Status";
+import LogServerStatus from "@local/shared/Entity/LogServerStatus";
+import Status from "@local/shared/Type/Status";
 
 import Cpu from "./ServerDataGenerator/Cpu";
 import Latency from "./ServerDataGenerator/Latency";
@@ -49,7 +49,7 @@ class LogServerStatusGenerator {
         }
 
         return {
-            server_id: this.serverId,
+            serverId: this.serverId,
             status: this.status,
             cpu,
             memory,

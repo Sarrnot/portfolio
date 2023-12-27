@@ -1,8 +1,8 @@
-import LogServerStatus from "../Entity/LogServerStatus";
+import LogServerStatus from "@local/shared/Entity/LogServerStatus";
 
 import ServerGenerator from "./ServerGenerator";
 import LogServerStatusGenerator from "../Generator/LogServerStatusGenerator";
-import Server from "../Entity/Server";
+import Server from "@local/shared/Entity/Server";
 import { Op } from "sequelize";
 
 const SERVER_COUNT = 16;

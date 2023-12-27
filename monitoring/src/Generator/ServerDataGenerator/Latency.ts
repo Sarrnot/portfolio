@@ -1,4 +1,4 @@
-import Status from "../../Type/Status";
+import Status from "@local/shared/Type/Status";
 
 const INCREMENT = 3;
 

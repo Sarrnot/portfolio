@@ -1,6 +1,6 @@
 FROM node:20
 
-WORKDIR /code/monitoring
+WORKDIR /code/shared
 
 ENTRYPOINT ["bash"]
 CMD ["./docker/scripts/run.sh"]

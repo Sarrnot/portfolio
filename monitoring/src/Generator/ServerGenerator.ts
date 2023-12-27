@@ -1,6 +1,6 @@
 import RandExp from "randexp";
 
-import Server from "../Entity/Server";
+import Server from "@local/shared/Entity/Server";
 import { CreationAttributes } from "sequelize";
 
 const CITIES = [
