@@ -4,7 +4,7 @@ namespace LogsApi {
     export namespace Get {
         export type Response<T extends AvailableValues> = (Pick<
             {
-                [key in T]: string | number;
+                [key in T]: string;
             },
             T
         > & {

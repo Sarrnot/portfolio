@@ -1,5 +1,5 @@
 import Box from "../components/Box";
-import { H2 } from "../components/Heading";
+import { H2 } from "@/_assets/components/Heading";
 import SECTION_ID from "../constants/SECTION_ID";
 
 const languageItems = ["TypeScript"];

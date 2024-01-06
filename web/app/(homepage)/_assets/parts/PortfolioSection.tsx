@@ -1,6 +1,6 @@
 import Image from "next/image";
 import SECTION_ID from "../constants/SECTION_ID";
-import { H2, H3 } from "../components/Heading";
+import { H2, H3 } from "@/_assets/components/Heading";
 
 const PortfolioSection = () => {
     return (

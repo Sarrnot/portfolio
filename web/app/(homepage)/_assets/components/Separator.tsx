@@ -1,5 +1,5 @@
 const Separator = () => {
-    return <hr className="border-primaryLightest border-t-2" />;
+    return <hr className="border-primaryLight border-t-2" />;
 };
 
 export default Separator;

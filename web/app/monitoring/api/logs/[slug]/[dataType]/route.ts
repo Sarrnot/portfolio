@@ -65,7 +65,6 @@ export const GET = async (request: NextRequest, { params }: Context) => {
 
         return NextResponse.json(logs);
     } catch (err) {
-        console.log(err);
         return ErrorHelper.createResponse(err);
     }
 };

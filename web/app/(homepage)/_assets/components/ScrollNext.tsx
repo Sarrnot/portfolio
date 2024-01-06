@@ -1,5 +1,5 @@
+import AnchorLink from "@/_assets/components/AnchorLink";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import AnchorLink from "./AnchorLink";
 
 type Props = {
     text?: string;
@@ -20,7 +20,7 @@ const ScrollNext = (props: Props) => {
                     <br />
                 </>
             )}
-            <ChevronDownIcon className="h-10 w-10 text-primary inline mt-3 group-hover/scrollNext:text-primaryLightest" />
+            <ChevronDownIcon className="h-10 w-10 text-primary inline mt-3 group-hover/scrollNext:text-primaryLight" />
         </AnchorLink>
     );
 };

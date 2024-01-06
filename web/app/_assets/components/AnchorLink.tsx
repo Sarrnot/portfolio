@@ -1,6 +1,6 @@
 "use client";
 
-import scrollIntoView from "../helpers/scrollIntoView";
+import scrollIntoView from "@/(homepage)/_assets/helpers/scrollIntoView";
 
 type Props = {
     id: string;

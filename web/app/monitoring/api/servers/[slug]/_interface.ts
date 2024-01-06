@@ -1,9 +1,9 @@
 import Server from "@/monitoring/_assets/types/Server";
 
-namespace ServersApi {
+namespace ServerApi {
     export namespace Get {
         export type Response = Server;
     }
 }
 
-export default ServersApi;
+export default ServerApi;

@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import NavigationLink from "../components/NavigationLink";
 import SECTION_ID from "../constants/SECTION_ID";
+import NavigationLink from "@/_assets/components/NavigationLink";
 
 const homepage = (
     <>
