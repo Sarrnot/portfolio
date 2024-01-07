@@ -1,4 +1,4 @@
-import NavigationBar from "@/_assets/components/NavigationBar";
+import NavigationBar from "@/_assets/components/Navigation/NavigationBar";
 import "./globals.css";
 import NavbarContent from "./_assets/helper/NavbarContent";
 

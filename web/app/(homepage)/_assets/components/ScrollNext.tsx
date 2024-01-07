@@ -1,4 +1,4 @@
-import AnchorLink from "@/_assets/components/AnchorLink";
+import AnchorLink from "@/_assets/components/Navigation/AnchorLink";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 type Props = {

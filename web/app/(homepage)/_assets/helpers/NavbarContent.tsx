@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import SECTION_ID from "../constants/SECTION_ID";
-import NavigationLink from "@/_assets/components/NavigationLink";
+import NavigationLink from "@/_assets/components/Navigation/NavigationLink";
 
 const homepage = (
     <>

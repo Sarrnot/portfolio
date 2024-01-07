@@ -1,14 +1,16 @@
 import { HomeIcon } from "@heroicons/react/24/solid";
 import NavigationLink from "./NavigationLink";
-import NAVBAR_HEIGHT from "../constants/NAVBAR_HEIGHT";
+import NAVBAR_HEIGHT from "../../constants/NAVBAR_HEIGHT";
+import MobileMenu from "./MobileMenu";
 
 type Props = {
     children?: React.ReactNode;
     bgColor?: string;
+    mobileMenu?: boolean;
 };
 
 const NavigationBar = (props: Props) => {
-    const { children, bgColor = "bg-primary" } = props;
+    const { children, bgColor = "bg-primary", mobileMenu = false } = props;
 
     return (
         <>
@@ -20,7 +22,14 @@ const NavigationBar = (props: Props) => {
                     <NavigationLink href="/">
                         <HomeIcon className="h-8 w-8" />
                     </NavigationLink>
-                    <div className="flex gap-8">{children}</div>
+                    <div
+                        className={`flex gap-8 ${
+                            mobileMenu && "hidden sm:flex"
+                        }`}
+                    >
+                        {children}
+                    </div>
+                    {mobileMenu && <MobileMenu>{children}</MobileMenu>}
                 </nav>
             </div>
         </>

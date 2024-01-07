@@ -1,5 +1,5 @@
 import "./globals.css";
-import NavigationBar from "../_assets/components/NavigationBar";
+import NavigationBar from "../_assets/components/Navigation/NavigationBar";
 import NavbarContent from "./_assets/helpers/NavbarContent";
 
 export { default as metadata } from "@/_assets/config/metadata";
@@ -10,7 +10,7 @@ const RootLayout = (props: { children: React.ReactNode }) => {
     return (
         <html className="motion-safe:scroll-smooth" lang="cz">
             <body className="text-text">
-                <NavigationBar>
+                <NavigationBar mobileMenu={true}>
                     <NavbarContent />
                 </NavigationBar>
                 {children}

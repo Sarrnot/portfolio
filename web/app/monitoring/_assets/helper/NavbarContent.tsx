@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import NavigationLink from "@/_assets/components/NavigationLink";
+import NavigationLink from "@/_assets/components/Navigation/NavigationLink";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 
 const serverDetail = (
