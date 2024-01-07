@@ -10,11 +10,17 @@ const INTERVAL = 3_000;
 export const useLog = <T extends AvailableValues>(
     slug: string,
     dataType: T,
-    limit?: number
+    limit?: number,
+    after?: Date,
+    before?: Date
 ): SWRResponse<Log<T>[], any, any> => {
-    const limitParam = limit ? `limit=${limit}` : "";
+    const queryParams = new URLSearchParams();
 
-    const url = `/monitoring/api/logs/${slug}/${dataType}?${limitParam}`;
+    before && queryParams.set("before", before.toISOString());
+    after && queryParams.set("after", after.toISOString());
+    limit && queryParams.set("limit", String(limit));
+
+    const url = `/monitoring/api/logs/${slug}/${dataType}?${queryParams.toString()}`;
 
     return useSWR(
         url,

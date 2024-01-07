@@ -4,13 +4,14 @@ type Props = {
     status: Status;
     message: string | number;
     inactive?: boolean;
+    fontSize?: string;
 };
 
 const STYLES = {
     pingAnimation: (color: string) =>
         `before:absolute before:w-full before:h-full before:-z-10 before:rounded-full before:${color} before:animate-customPing`,
     container:
-        "rounded-full w-28 h-28 sm:w-36 sm:h-36 flex justify-center items-center relative text-center text-primaryDark m-8 sm:m-11 text-2xl sm:text-3xl font-bold z-10",
+        "rounded-full w-28 h-28 sm:w-36 sm:h-36 flex justify-center items-center relative text-center text-primaryDark m-8 sm:m-11 font-bold z-10",
     statusDictionary: {
         [Status.ok]: "bg-ok", // before:bg-ok
         [Status.warning]: "bg-warning", // before:bg-warning
@@ -20,7 +21,12 @@ const STYLES = {
 };
 
 const StatusIndicator = (props: Props) => {
-    const { status, message, inactive = false } = props;
+    const {
+        status,
+        message,
+        inactive = false,
+        fontSize = "text-2xl sm:text-3xl",
+    } = props;
 
     const background = inactive
         ? "bg-primaryLight"
@@ -28,7 +34,7 @@ const StatusIndicator = (props: Props) => {
 
     return (
         <div
-            className={`${background} ${STYLES.container} ${
+            className={`${background} ${STYLES.container} ${fontSize} ${
                 !inactive && STYLES.pingAnimation(background)
             }`}
         >

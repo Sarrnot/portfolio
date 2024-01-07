@@ -63,7 +63,7 @@ export const GET: ApiResponse<UpFromApi.Get.Response, Params> = async (
             type: QueryTypes.SELECT,
         });
 
-        return NextResponse.json(queryResult[0].createdAt);
+        return NextResponse.json(queryResult[0]?.createdAt || "");
     } catch (err) {
         return ErrorHelper.createResponse(err);
     }

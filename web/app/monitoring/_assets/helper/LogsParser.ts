@@ -8,7 +8,8 @@ const LogsParser = <T extends AvailableValues>(
     return rawLogs.map(
         (rawLog) =>
             ({
-                [dataType]: Number(rawLog[dataType]),
+                [dataType]:
+                    rawLog[dataType] !== null ? Number(rawLog[dataType]) : null,
                 createdAt: new Date(rawLog.createdAt),
             } as Log<T>) // TODO: remove type assertion
     );
