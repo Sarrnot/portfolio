@@ -4,8 +4,14 @@ import Server from "../Entity/Server";
 
 class MonitoringDatabase {
     constructor(private sequelize: Sequelize) {
-        Server.init(Server.definition, { sequelize });
-        LogServerStatus.init(LogServerStatus.definition, { sequelize });
+        Server.init(Server.definition, {
+            sequelize,
+            tableName: "Servers",
+        });
+        LogServerStatus.init(LogServerStatus.definition, {
+            sequelize,
+            tableName: "LogServerStatuses",
+        });
     }
 
     async sync() {
