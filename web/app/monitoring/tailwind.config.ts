@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 import baseConfig from "../_assets/config/tailwind-base.config";
-import { transform } from "next/dist/build/swc";
 
 const config: Config = {
     content: {
