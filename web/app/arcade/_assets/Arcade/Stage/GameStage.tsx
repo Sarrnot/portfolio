@@ -1,17 +1,13 @@
 import { useEffect, useRef } from "react";
 import GameEngine from "../Engine/GameEngine";
-import {
-    useArcadeDispatch,
-    useArcadeSelector,
-    useArcadeStore,
-} from "../Store/hooks";
+import { useArcadeDispatch, useArcadeStore } from "../Store/hooks";
 import Canvas from "../Engine/Graphics/Canvas";
 import { resetGameData } from "../Store/Data/gameDataSlice";
+import ScoreDisplay from "./components/ScoreDisplay";
 
 const GameStage = () => {
     const dispatch = useArcadeDispatch();
     const store = useArcadeStore();
-    const score = useArcadeSelector((state) => state.gameData.score);
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -23,13 +19,15 @@ const GameStage = () => {
 
         const gameEngine = new GameEngine(store, new Canvas(canvasRef.current));
         gameEngine.start();
+
+        return () => {
+            gameEngine.stop();
+        };
     }, [canvasRef.current]);
 
     return (
         <div className="h-full relative">
-            <div className="absolute top-2 right-4 text-2xl">
-                Score: {score}
-            </div>
+            <ScoreDisplay />
             <canvas ref={canvasRef} className="w-full h-full" />
         </div>
     );
