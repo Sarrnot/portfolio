@@ -1,5 +1,5 @@
 import Player from "../Entity/Player";
-import GameObjectRepository from "./GameObjectRepository";
+import GameObjectRepository from "../Repository/GameObjectRepository";
 import { ArcadeStore } from "../Store/store";
 import BASELINE_Y from "../constants/BASELINE_Y";
 import TICKS_FREQUENCY from "../constants/TICKS_FREQUENCY";
@@ -14,12 +14,14 @@ class PlayerController {
 
     constructor(store: ArcadeStore, objectRepository: GameObjectRepository) {
         const avatar = store.getState().settings.avatar;
+        const image = new Image();
+        image.src = avatar.imageSrc;
 
         this.player = new Player(
             { x: LEFT_MARGIN, y: BASELINE_Y },
             { x: SIZE, y: SIZE },
             { x: 0, y: 0 },
-            avatar
+            image
         );
 
         objectRepository.players.push(this.player);

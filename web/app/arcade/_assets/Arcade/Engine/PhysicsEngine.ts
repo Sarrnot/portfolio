@@ -1,6 +1,6 @@
 import AbstractGameObject from "../Entity/AbstractGameObject";
 import Obstacle from "../Entity/Obstacle";
-import GameObjectRepository from "./GameObjectRepository";
+import GameObjectRepository from "../Repository/GameObjectRepository";
 import BASELINE_Y from "../constants/BASELINE_Y";
 import TICKS_FREQUENCY from "../constants/TICKS_FREQUENCY";
 import EventDispatcher from "./EventDispatcher";

@@ -4,18 +4,13 @@ import AbstractGameObject from "./AbstractGameObject";
 import Coordinates from "./Traits/Coordinates";
 
 class Player extends AbstractGameObject {
-    private image: HTMLImageElement;
-
     constructor(
         public position: Coordinates,
         public size: Coordinates,
         public velocity: Coordinates,
-        public avatar: Avatar
+        public image: HTMLImageElement
     ) {
         super(position, size, velocity, true);
-
-        this.image = new Image();
-        this.image.src = avatar.imageSrc;
     }
 
     draw(painter: ObjectPainter) {

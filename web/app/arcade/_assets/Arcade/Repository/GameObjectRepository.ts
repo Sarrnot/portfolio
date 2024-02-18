@@ -2,18 +2,16 @@ import AbstractGameObject from "../Entity/AbstractGameObject";
 import Landscape from "../Entity/Landscape";
 import Obstacle from "../Entity/Obstacle";
 import Player from "../Entity/Player";
-import Text from "../Entity/Text";
 
 class GameObjectRepository {
     public players: Player[] = [];
     public obstacles: Obstacle[] = [];
     public landscapes: Landscape[] = [];
-    public texts: Text[] = [];
+    public other: AbstractGameObject[] = [];
     private dictionary = {
         [Player.name]: this.players,
         [Obstacle.name]: this.obstacles,
         [Landscape.name]: this.landscapes,
-        [Text.name]: this.texts,
     };
 
     getAll(): AbstractGameObject[] {
@@ -21,14 +19,21 @@ class GameObjectRepository {
             ...this.players,
             ...this.obstacles,
             ...this.landscapes,
-            ...this.texts,
+            ...this.other,
         ];
     }
 
     destroy(object: AbstractGameObject) {
-        const repository = this.dictionary[object.constructor.name];
+        const repository =
+            this.dictionary[object.constructor.name] || this.other;
 
-        repository.splice(repository.indexOf(object), 1);
+        const index = repository.findIndex(
+            (repositoryObject) => object === repositoryObject
+        );
+
+        if (index === -1) return;
+
+        repository.splice(index, 1);
     }
 }
 

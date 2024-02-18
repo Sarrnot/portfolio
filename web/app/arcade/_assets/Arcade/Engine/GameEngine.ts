@@ -1,7 +1,7 @@
 import Text from "../Entity/Text";
 import LandscapeGenerator from "../Generator/LandscapeGenerator";
 import ObstacleGenerator from "../Generator/ObstacleGenerator.";
-import GameObjectRepository from "./GameObjectRepository";
+import GameObjectRepository from "../Repository/GameObjectRepository";
 import { setStage } from "../Store/Data/stageSlice";
 import { ArcadeStore } from "../Store/store";
 import TICKS_FREQUENCY from "../constants/TICKS_FREQUENCY";
@@ -17,6 +17,7 @@ import Player from "../Entity/Player";
 import Obstacle from "../Entity/Obstacle";
 import ObjectDestroyedEvent from "../Event/ObjectDestroyedEvent";
 import { incrementScore } from "../Store/Data/gameDataSlice";
+import ImageRepository from "../Repository/ImageRepository";
 
 class GameEngine {
     public tickInterval = 1_000 / TICKS_FREQUENCY;
@@ -25,6 +26,7 @@ class GameEngine {
     private interval?: NodeJS.Timeout;
     private graphicsEngine: GraphicsEngine;
     private objectRepository = new GameObjectRepository();
+    private imageRepository = new ImageRepository();
 
     constructor(private store: ArcadeStore, canvas: Canvas) {
         const eventDispatcher = new EventDispatcher();
@@ -35,9 +37,13 @@ class GameEngine {
         this.graphicsEngine = new GraphicsEngine(this.objectRepository, canvas);
         new PlayerController(store, this.objectRepository);
 
-        const obstacleGenerator = new ObstacleGenerator(this.objectRepository);
+        const obstacleGenerator = new ObstacleGenerator(
+            this.objectRepository,
+            this.imageRepository
+        );
         const landscapeGenerator = new LandscapeGenerator(
-            this.objectRepository
+            this.objectRepository,
+            this.imageRepository
         );
 
         this.subscribeToTick(physicsEngine.update);
@@ -107,7 +113,7 @@ class GameEngine {
             clearInterval(fadeIn);
         }, 5);
 
-        this.objectRepository.texts.push(text);
+        this.objectRepository.other.push(text);
 
         setTimeout(() => {
             this.stop();

@@ -8,19 +8,17 @@ class Landscape extends AbstractGameObject {
         public position: Coordinates,
         public size: Coordinates,
         public velocity: Coordinates,
-        public color?: CanvasFillStrokeStyles["strokeStyle"]
+        public image: HTMLImageElement,
+        public opacity = 1
     ) {
         super(position, size, velocity, false);
     }
 
     public draw(painter: ObjectPainter, canvas: Canvas) {
-        if (this.color && canvas.ctx) {
-            canvas.ctx.strokeStyle = this.color;
-        }
-        painter.lineTo({ x: 0, y: this.size.y });
-        painter.lineTo({ x: this.size.x, y: this.size.y });
-        painter.lineTo({ x: this.size.x, y: 0 });
-        canvas.ctx?.stroke();
+        if (!canvas.ctx) return;
+
+        canvas.ctx.globalAlpha = this.opacity;
+        painter.drawImage(this.image, this.size);
     }
 }
 

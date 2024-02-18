@@ -1,4 +1,4 @@
-import GameObjectRepository from "../GameObjectRepository";
+import GameObjectRepository from "../../Repository/GameObjectRepository";
 import Canvas from "./Canvas";
 import ObjectPainter from "./ObjectPainter";
 
@@ -36,6 +36,7 @@ class GraphicsEngine {
             this.canvas.ctx.beginPath();
             this.canvas.ctx.strokeStyle = "#000000";
             this.canvas.ctx.fillStyle = "#000000";
+            this.canvas.ctx.globalAlpha = 1;
             const objectPainter = new ObjectPainter(this.canvas, object);
             object.draw(objectPainter, this.canvas);
             this.canvas.ctx.closePath();
