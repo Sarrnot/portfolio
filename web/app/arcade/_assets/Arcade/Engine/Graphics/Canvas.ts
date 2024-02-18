@@ -36,8 +36,8 @@ class Canvas {
         this.ctx?.fillRect(
             this.calculateX(position.x),
             this.calculateY(position.y),
-            size.x,
-            -size.y
+            this.calculateX(size.x),
+            -this.calculateY(size.y, false)
         );
     }
 
@@ -75,8 +75,8 @@ class Canvas {
             image,
             this.calculateX(position.x),
             this.calculateY(position.y + size.y),
-            size.x,
-            size.y
+            this.calculateX(size.x),
+            this.calculateY(size.y, false)
         );
     }
 
@@ -88,8 +88,12 @@ class Canvas {
         return this.size.x * (x / SCALE_FACTOR.x);
     }
 
-    private calculateY(y: number) {
-        return this.invertY(this.size.y * (y / SCALE_FACTOR.y));
+    private calculateY(y: number, invert = true) {
+        if (invert) {
+            return this.invertY(this.size.y * (y / SCALE_FACTOR.y));
+        }
+
+        return this.size.y * (y / SCALE_FACTOR.y);
     }
 
     private invertY(y: number) {
