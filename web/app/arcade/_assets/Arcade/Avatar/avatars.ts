@@ -1,17 +1,21 @@
 import Avatar from "./Avatar";
 
+import deerImg from "./images/deer.svg";
+import foxImg from "./images/fox.svg";
+import bunnyImg from "./images/bunny.svg";
+
 const avatars: Avatar[] = [
     {
         name: "Deer",
-        image: require("./images/deer.svg"),
+        imageSrc: deerImg.src,
     },
     {
         name: "Fox",
-        image: require("./images/fox.svg"),
+        imageSrc: foxImg.src,
     },
     {
         name: "Bunny",
-        image: require("./images/bunny.svg"),
+        imageSrc: bunnyImg.src,
     },
 ];
 

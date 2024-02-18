@@ -1,3 +1,4 @@
+import Alignment from "../../Entity/Traits/Alignment";
 import Coordinates from "../../Entity/Traits/Coordinates";
 import SCALE_FACTOR from "../../constants/SCALE_FACTOR";
 
@@ -17,18 +18,78 @@ class Canvas {
         this.resizeCallbackQueue.push(callback);
     }
 
-    public moveTo(x: number, y: number) {
+    public moveTo(position: Coordinates) {
         this.ctx?.moveTo(
-            this.size.x * (x / SCALE_FACTOR),
-            this.invertY(this.size.y * (y / SCALE_FACTOR))
+            this.calculateX(position.x),
+            this.calculateY(position.y)
         );
     }
 
-    public lineTo(x: number, y: number) {
+    public lineTo(position: Coordinates) {
         this.ctx?.lineTo(
-            this.size.x * (x / SCALE_FACTOR),
-            this.invertY(this.size.y * (y / SCALE_FACTOR))
+            this.calculateX(position.x),
+            this.calculateY(position.y)
         );
+    }
+
+    public fillRect(position: Coordinates, size: Coordinates) {
+        this.ctx?.fillRect(
+            this.calculateX(position.x),
+            this.calculateY(position.y),
+            size.x,
+            -size.y
+        );
+    }
+
+    public fillText(
+        text: string,
+        font: string,
+        position: Coordinates,
+        color?: string,
+        horizontalAlign: Alignment = "center"
+    ) {
+        if (!this.ctx) return;
+        if (color) {
+            this.ctx.fillStyle = color;
+        }
+
+        const textWidth = this.ctx.measureText(text).width;
+
+        let x = this.calculateX(position.x);
+        let y = this.calculateX(position.y);
+
+        if (horizontalAlign === "center") {
+            x -= textWidth / 2;
+        }
+
+        this.ctx.font = font;
+        this.ctx.fillText(text, x, y);
+    }
+
+    public drawImage(
+        image: CanvasImageSource,
+        position: Coordinates,
+        size: Coordinates
+    ) {
+        this.ctx?.drawImage(
+            image,
+            this.calculateX(position.x),
+            this.calculateY(position.y + size.y),
+            size.x,
+            size.y
+        );
+    }
+
+    public clear() {
+        this.ctx?.clearRect(0, 0, this.size.x, this.size.y);
+    }
+
+    private calculateX(x: number) {
+        return this.size.x * (x / SCALE_FACTOR.x);
+    }
+
+    private calculateY(y: number) {
+        return this.invertY(this.size.y * (y / SCALE_FACTOR.y));
     }
 
     private invertY(y: number) {

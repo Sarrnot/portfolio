@@ -24,7 +24,7 @@ const NewGameStage = () => {
                         key={i}
                     >
                         <Image
-                            src={avatar.image}
+                            src={avatar.imageSrc}
                             alt="Avatar"
                             width="48"
                             height="48"

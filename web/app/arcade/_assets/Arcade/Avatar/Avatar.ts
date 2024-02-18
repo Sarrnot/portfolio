@@ -1,6 +1,6 @@
 type Avatar = {
     name: string;
-    image: string;
+    imageSrc: string;
 };
 
 export default Avatar;

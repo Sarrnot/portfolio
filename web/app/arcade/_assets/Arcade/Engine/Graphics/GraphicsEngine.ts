@@ -1,16 +1,14 @@
-import GameObjectRepository from "../../Repository/GameObjectRepository";
+import GameObjectRepository from "../GameObjectRepository";
 import Canvas from "./Canvas";
 import ObjectPainter from "./ObjectPainter";
 
 class GraphicsEngine {
-    private canvas: Canvas;
     private shouldStop = false;
 
     constructor(
-        canvas: HTMLCanvasElement,
-        private objectRepository: GameObjectRepository
+        private objectRepository: GameObjectRepository,
+        private canvas: Canvas
     ) {
-        this.canvas = new Canvas(canvas);
         this.canvas.addResizeListener(this.render);
     }
 
@@ -30,9 +28,17 @@ class GraphicsEngine {
     }
 
     private render = () => {
+        this.canvas.clear();
+
         this.objectRepository.getAll().forEach((object) => {
+            if (!this.canvas.ctx) return;
+
+            this.canvas.ctx.beginPath();
+            this.canvas.ctx.strokeStyle = "#000000";
+            this.canvas.ctx.fillStyle = "#000000";
             const objectPainter = new ObjectPainter(this.canvas, object);
             object.draw(objectPainter, this.canvas);
+            this.canvas.ctx.closePath();
         });
     };
 }

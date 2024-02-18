@@ -1,1 +1,1 @@
-export default 1_000;
+export default { x: 1_024, y: 682 };
