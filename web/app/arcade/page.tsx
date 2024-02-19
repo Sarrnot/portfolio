@@ -5,7 +5,7 @@ const ArcadePage = () => {
     return (
         <main
             style={{ height: `calc(100svh - ${NAVBAR_HEIGHT.rem}rem)` }}
-            className={`w-full py-8`}
+            className={`w-full py-2`}
         >
             <section className="container h-full relative">
                 <Arcade />

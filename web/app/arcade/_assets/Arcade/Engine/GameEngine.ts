@@ -35,7 +35,7 @@ class GameEngine {
             eventDispatcher
         );
         this.graphicsEngine = new GraphicsEngine(this.objectRepository, canvas);
-        new PlayerController(store, this.objectRepository);
+        new PlayerController(store, this.objectRepository, canvas);
 
         const obstacleGenerator = new ObstacleGenerator(
             this.objectRepository,
