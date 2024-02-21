@@ -23,8 +23,8 @@ const ContactSection = () => {
             />
             <InfoRow
                 Icon={EnvelopeIcon}
-                text="thesarrnot@gmail.com"
-                href="mailto:thesarrnot@gmail.com"
+                text="sarrnot@sarrnot.com"
+                href="mailto:sarrnot@sarrnot.com"
             />
         </section>
     );

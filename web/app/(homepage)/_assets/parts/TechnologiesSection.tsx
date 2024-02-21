@@ -3,7 +3,7 @@ import { H2 } from "@/_assets/components/Heading";
 import SECTION_ID from "../constants/SECTION_ID";
 
 const languageItems = ["TypeScript"];
-const frontendItems = ["React", "TailwindCSS", "Sass"];
+const frontendItems = ["React", "Redux", "TailwindCSS", "Sass"];
 const backendItems = ["Next.js", "Express.js"];
 const databaseItems = ["MongoDB", "MariaDB"];
 const otherItems = ["Git", "Docker", "Webpack", "Bash"];
