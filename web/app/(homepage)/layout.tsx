@@ -10,9 +10,9 @@ const RootLayout = (props: { children: React.ReactNode }) => {
     return (
         <html className="motion-safe:scroll-smooth" lang="cz">
             <body className="text-text">
-                <NavigationBar mobileMenu={true}>
+                {/* <NavigationBar mobileMenu={true}>
                     <NavbarContent />
-                </NavigationBar>
+                </NavigationBar> */}
                 {children}
             </body>
         </html>
