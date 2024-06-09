@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef } from "react";
+import { use, useEffect, useMemo, useRef } from "react";
+import useIsSmallDevice from "../hooks/useIsSmallDevice";
 
 type Props = {
     name: string;
@@ -11,10 +12,15 @@ type Props = {
 
 const BASE_URL = "/images/parallax";
 const calcOffset = (speed: number) => -window.scrollY * (speed / 100);
+const setTransform = (element: HTMLElement | null, value: string) => {
+    if (!element) return;
+    element.style.transform = value;
+};
 
 const Parallax = (props: Props) => {
     const { name, speed, repeated } = props;
 
+    const isSmallDevice = useIsSmallDevice();
     const mainRef = useRef<HTMLImageElement>(null);
     const repeatedRef = useRef<HTMLImageElement>(null);
     const position = useMemo(
@@ -24,25 +30,24 @@ const Parallax = (props: Props) => {
 
     useEffect(() => {
         if (speed === 100) return;
+        if (isSmallDevice) return;
 
         const listener = () => {
             const offset = calcOffset(speed);
 
-            if (mainRef.current) {
-                mainRef.current.style.transform = `translate(-50%, ${offset}px)`;
-            }
-            if (!repeated) return;
-            if (repeatedRef.current) {
-                repeatedRef.current.style.transform = `translateY(${offset}px)`;
-            }
+            setTransform(mainRef.current, `translate(-50%, ${offset}px)`);
+            setTransform(repeatedRef.current, `translateY(${offset}px)`);
         };
 
+        listener();
         window.addEventListener("scroll", listener);
 
         return () => {
             window.removeEventListener("scroll", listener);
+            setTransform(mainRef.current, "translate(-50%, 0)");
+            setTransform(repeatedRef.current, "none");
         };
-    }, []);
+    }, [isSmallDevice]);
 
     return (
         <>

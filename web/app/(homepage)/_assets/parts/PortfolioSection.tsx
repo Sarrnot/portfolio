@@ -5,7 +5,7 @@ import { H2, H3 } from "@/_assets/components/Heading";
 const PortfolioSection = () => {
     return (
         <section
-            className="flex flex-col items-center"
+            className="flex flex-col items-center bg-blue-900 relative z-10"
             id={SECTION_ID.portfolio}
         >
             <H2>Portfolio</H2>
