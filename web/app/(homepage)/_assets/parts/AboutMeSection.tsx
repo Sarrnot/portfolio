@@ -2,8 +2,8 @@ import Image from "next/image";
 
 const AboutMeSection = () => {
     return (
-        <section className="flex flex-col md:flex-row justify-center items-center gap-8 relative z-10 bg-blue-900 px-6 py-20">
-            <div className="text-3xl text-center">
+        <section className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12 relative z-10 bg-blue-900 px-6 md:px-12 py-20">
+            <div className="text-3xl text-center md:basis-5/12 lg:basis-auto">
                 Hi, I'm Zdeněk <br />
                 and I can be your next<span className="text-lg">(.js)</span>
                 &nbsp;developer
