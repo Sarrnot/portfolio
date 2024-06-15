@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const isSmall = () => window.innerHeight < 500 || window.innerWidth < 576;
+const isSmall = () => window.innerHeight < 500;
 
 const useIsSmallDevice = () => {
     const [isSmallDevice, setIsSmallDevice] = useState(isSmall());
