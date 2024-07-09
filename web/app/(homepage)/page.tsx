@@ -7,7 +7,7 @@ const HomePage = () => {
     return (
         <main>
             <IntroSection />
-            <div className="relative z-10 bg-blue-500">
+            <div className="relative z-10 bg-blue-500 parallax-clip">
                 <AboutMeSection />
                 <PortfolioSection />
                 <UnderwaterParallax />

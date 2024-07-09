@@ -1,19 +1,30 @@
-import ParallaxContainerOffset from "../components/ParallaxContainerOffset";
-import ParallaxOffset from "../components/ParallaxOffset";
+import ParallaxContainer from "../components/Parallax/ParallaxContainer";
+import Parallax from "../components/Parallax/Parallax";
+
+const WaterLayer = (props: { transparent?: boolean }) => {
+    const { transparent = true } = props;
+    return (
+        <div
+            className={`absolute w-full h-full z-10 bg-[#6e65d9] ${
+                transparent && "opacity-50"
+            }`}
+        />
+    );
+};
 
 const UnderwaterParallax = () => {
     return (
-        <ParallaxContainerOffset>
-            <ParallaxOffset name="underwater/water_bg" speed={100} />
-            <ParallaxOffset name="underwater/reef_back" speed={50} />
-            <ParallaxOffset name="underwater/fish_back" speed={50} />
-            <ParallaxOffset name="underwater/water_layer" speed={100} />
-            <ParallaxOffset name="underwater/reef_middle" speed={70} />
-            <ParallaxOffset name="underwater/fish_middle" speed={70} />
-            <ParallaxOffset name="underwater/water_layer" speed={100} />
-            <ParallaxOffset name="underwater/reef_front" speed={100} />
-            <ParallaxOffset name="underwater/fish_front" speed={90} />
-        </ParallaxContainerOffset>
+        <ParallaxContainer height={1000} align="bottom" clip={false}>
+            <WaterLayer transparent={false} />
+            <Parallax name="underwater/reef_back" speed={50} />
+            <Parallax name="underwater/fish_back" speed={50} />
+            <WaterLayer />
+            <Parallax name="underwater/reef_middle" speed={70} />
+            <Parallax name="underwater/fish_middle" speed={70} />
+            <WaterLayer />
+            <Parallax name="underwater/reef_front" speed={100} />
+            <Parallax name="underwater/fish_front" speed={90} />
+        </ParallaxContainer>
     );
 };
 

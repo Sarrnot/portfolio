@@ -1,5 +1,5 @@
-import Parallax from "../components/Parallax";
-import ParallaxContainer from "../components/ParallaxContainer";
+import Parallax from "../components/Parallax/Parallax";
+import ParallaxContainer from "../components/Parallax/ParallaxContainer";
 
 const IntroSection = () => {
     return (
@@ -8,7 +8,7 @@ const IntroSection = () => {
                 Let's dive together <br />
                 into <span className="uppercase">web&nbsp;development</span>
             </h1>
-            <ParallaxContainer>
+            <ParallaxContainer height={1000}>
                 <Parallax name="sky" speed={0} repeated />
                 <Parallax name="sun" speed={0} />
                 <Parallax name="mountains_back" speed={20} repeated />

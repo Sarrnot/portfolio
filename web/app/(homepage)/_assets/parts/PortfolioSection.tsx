@@ -10,7 +10,7 @@ const PortfolioSection = () => {
         >
             <H2>Portfolio</H2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 flew-wrap w-full">
+            <div className="container grid grid-cols-1 sm:grid-cols-2 gap-12 flew-wrap w-full">
                 <div className="flex flex-col items-center">
                     <H3>
                         Server monitoring
