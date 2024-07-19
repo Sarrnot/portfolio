@@ -39,6 +39,7 @@ const Parallax = (props: Props) => {
         speed,
         align: context?.align ?? "top",
         baseXOffset: -50,
+        topThreshold: context?.topThreshold ?? 0,
     });
 
     useParallax({
@@ -46,6 +47,7 @@ const Parallax = (props: Props) => {
         container: context?.container ?? null,
         speed,
         align: context?.align ?? "top",
+        topThreshold: context?.topThreshold ?? 0,
     });
 
     if (!context) return <></>;

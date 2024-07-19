@@ -6,6 +6,7 @@ type Options = {
     align: "top" | "bottom";
     parallax: RefObject<HTMLElement>;
     container: RefObject<HTMLElement> | null;
+    topThreshold: number;
     baseXOffset?: number;
 };
 
@@ -20,7 +21,8 @@ const calcOffset = (
     speed: number,
     container: HTMLElement,
     parallaxElem: HTMLElement,
-    align: "top" | "bottom"
+    align: "top" | "bottom",
+    topThreshold: number
 ) => {
     const containerCoords = container.getBoundingClientRect();
     const parallaxCoords = parallaxElem.getBoundingClientRect();
@@ -30,7 +32,6 @@ const calcOffset = (
     const containerY = containerCoords.y + window.scrollY;
     const parallaxY = containerY + parallaxOffset;
     const distanceFromScroll = parallaxY - window.scrollY;
-    const topThreshold = 400;
     let parallaxEffect = distanceFromScroll * (1 - speed / 100);
 
     if (distanceFromScroll > 0) {
@@ -47,13 +48,24 @@ const setTransform = (element: HTMLElement | null, value: string) => {
     element.style.transform = value;
 };
 
+/**
+ * Custom hook for calculating and applying parallax.
+ * Tightly coupled with Parallax. Not meant to be a general purpose functionality, only pulled out for better readability.
+ */
 const useParallax = (options: Options) => {
-    const { speed, parallax, align, container, baseXOffset = 0 } = options;
+    const {
+        speed,
+        parallax,
+        align,
+        container,
+        topThreshold,
+        baseXOffset = 0,
+    } = options;
 
     const isSmallDevice = useIsSmallDevice();
 
     useEffect(() => {
-        if (speed === 100) return;
+        if (speed === 0 || speed === 100) return;
         if (isSmallDevice) return;
 
         const listener = () => {
@@ -64,7 +76,8 @@ const useParallax = (options: Options) => {
                 speed,
                 container.current,
                 parallax.current,
-                align
+                align,
+                topThreshold
             );
 
             setTransform(

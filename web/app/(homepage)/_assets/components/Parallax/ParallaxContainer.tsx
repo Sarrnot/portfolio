@@ -8,18 +8,27 @@ type Props = {
     className?: string;
     clip?: boolean;
     align?: "top" | "bottom";
+    topThreshold?: number;
 };
 
 type Context = {
     height: number;
     container: RefObject<HTMLDivElement>;
     align: "top" | "bottom";
+    topThreshold: number;
 } | null;
 
 export const ParallaxContext = createContext<Context>(null);
 
 const ParallaxContainer = (props: Props) => {
-    const { children, height, className, clip = true, align = "top" } = props;
+    const {
+        children,
+        height,
+        className,
+        clip = true,
+        align = "top",
+        topThreshold = 0,
+    } = props;
 
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +40,7 @@ const ParallaxContainer = (props: Props) => {
             ref={containerRef}
         >
             <ParallaxContext.Provider
-                value={{ height, container: containerRef, align }}
+                value={{ height, container: containerRef, align, topThreshold }}
             >
                 {children}
             </ParallaxContext.Provider>

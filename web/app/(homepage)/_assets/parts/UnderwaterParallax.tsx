@@ -14,7 +14,12 @@ const WaterLayer = (props: { transparent?: boolean }) => {
 
 const UnderwaterParallax = () => {
     return (
-        <ParallaxContainer height={1000} align="bottom" clip={false}>
+        <ParallaxContainer
+            height={1000}
+            align="bottom"
+            clip={false}
+            topThreshold={400}
+        >
             <WaterLayer transparent={false} />
             <Parallax name="underwater/reef_back" speed={50} />
             <Parallax name="underwater/fish_back" speed={50} />
